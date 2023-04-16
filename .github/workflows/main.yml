@@ -25,7 +25,7 @@ jobs:
 
       - name: Copy new code to DO server
         run: |
-          rsync -a ${{ github.workspace }}/* ${{secrets.SSH}}\$HOME/apps/iot.ioblast.net
+          rsync -avh ${{ github.workspace }}/* ${{secrets.SSH}}:~/apps/iot.ioblast.net
       # - run: ssh callum@207.154.237.124 mkdir test
       # - run: echo "🎉 The job was automatically triggered by a ${{ github.event_name }} event."
       # - run: echo "🐧 This job is now running on a ${{ runner.os }} server hosted by GitHub!"
