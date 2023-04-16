@@ -2,12 +2,14 @@ const express = require('express');
 
 const app = express();
 
+app.use(express.json());
+
 app.get('/', (req, res) => {
   res.send('PLEASE MARRY ME!');
 });
 
 app.post('/update', (req, res) => {
-  console.log("req", req?.json);
+  // console.log("req", req?.json);
   console.log("req", req.body);
   return res.send("OK");
 })
