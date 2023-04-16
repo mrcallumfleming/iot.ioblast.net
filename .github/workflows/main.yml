@@ -1,5 +1,4 @@
 name: Deploy to DO
-run-name: ${{ github.actor }} is testing out GitHub Actions 🚀
 on: [push]
 jobs:
   Deploy:
@@ -18,7 +17,8 @@ jobs:
 
       - name: Kill API
         run: |
-          ssh callum@207.154.237.124 pm2 stop iot-ioblast
+          ls ~
+          ssh callum@207.154.237.124 "pm2 stop iot-ioblast"
 
       - name: Checkout code
         uses: actions/checkout@v3
