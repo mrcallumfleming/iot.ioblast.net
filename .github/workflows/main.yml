@@ -8,9 +8,7 @@ jobs:
       - run: mkdir ~/.ssh
       - run: touch ~/.ssh/id_rsa
       - run |
-          cat << EOF > ~/.ssh/id_rsa
-          ${{secrets.SSH_KEY}}
-          EOF
+          cat << EOF > ~/.ssh/id_rsa ${{secrets.SSH_KEY} EOF
       - run: ls ~/ssh
       # - run: echo "🎉 The job was automatically triggered by a ${{ github.event_name }} event."
       # - run: echo "🐧 This job is now running on a ${{ runner.os }} server hosted by GitHub!"
