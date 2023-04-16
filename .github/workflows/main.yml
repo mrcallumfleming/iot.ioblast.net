@@ -26,7 +26,7 @@ jobs:
           rsync -avh ${{ github.workspace }}/* ${{secrets.SSH}}:~/apps/iot.ioblast.net
 
       - name: Clean and build codebase
-        run: ssh ${{secrets.SSH}} "(cd /apps/iot.ioblast.net && npm ci)"
+        run: ssh ${{secrets.SSH}} "(cd ~/apps/iot.ioblast.net && npm ci)"
 
       - name: Start the API
         run: ssh ${{secrets.SSH}} pm2 start iot-ioblast
