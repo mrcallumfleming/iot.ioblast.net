@@ -13,19 +13,19 @@ jobs:
           ${{secrets.SSH_KEY}}
           EOF
           chmod 600 ~/.ssh/id_rsa
-          ssh-keyscan -H 207.154.237.124 >> ~/.ssh/known_hosts
+          ssh-keyscan -H ${{secrets.IP}} >> ~/.ssh/known_hosts
 
       - name: Kill API
         run: |
           ls -la ~/.ssh
-          ssh callum@207.154.237.124 pm2 stop iot-ioblast
+          ssh ${{secrets.SSH}} pm2 stop iot-ioblast
 
       - name: Checkout code
         uses: actions/checkout@v3
 
-      - name: List files in the repository
+      - name: Copy new code to DO server
         run: |
-          ls ${{ github.workspace }}
+          rsync -a ${{ github.workspace }}/* ${{secrets.SSH}}/~/apps/iot.ioblast.net
       # - run: ssh callum@207.154.237.124 mkdir test
       # - run: echo "🎉 The job was automatically triggered by a ${{ github.event_name }} event."
       # - run: echo "🐧 This job is now running on a ${{ runner.os }} server hosted by GitHub!"
