@@ -5,7 +5,8 @@ const app = express();
 app.use(express.json());
 
 app.get('/', (req, res) => {
-  res.send('PLEASE MARRY ME!');
+  // res.send('PLEASE MARRY ME!');
+  return res.redirect("https://www.youtube.com/watch?v=8QxIIz1yEsA&pp=ygUIaGVsbCBuYXc%3D");
 });
 
 app.post('/update', (req, res) => {
