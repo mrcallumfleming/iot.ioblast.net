@@ -17,7 +17,7 @@ jobs:
 
       - name: Kill API
         run: |
-          ls ~
+          ls -la ~
           ssh callum@207.154.237.124 "pm2 stop iot-ioblast"
 
       - name: Checkout code
