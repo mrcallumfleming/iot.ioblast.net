@@ -5,16 +5,24 @@ jobs:
   Deploy:
     runs-on: ubuntu-latest
     steps:
-      - run: mkdir ~/.ssh
-      - run: touch ~/.ssh/id_rsa
-      - run: touch ~/.ssh/known_hosts
-      - run: |
+      - name: Setup SSH
+        run: mkdir ~/.ssh
+        run: touch ~/.ssh/id_rsa
+        run: touch ~/.ssh/known_hosts
+        run: |
           cat << EOF > ~/.ssh/id_rsa
           ${{secrets.SSH_KEY}}
           EOF
-      - run: chmod 600 ~/.ssh/id_rsa
-      - run: ssh-keyscan -H 207.154.237.124 >> ~/.ssh/known_hosts
-      - run: ssh callum@207.154.237.124 mkdir test
+        run: chmod 600 ~/.ssh/id_rsa
+        run: ssh-keyscan -H 207.154.237.124 >> ~/.ssh/known_hosts
+
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: List files in the repository
+        run: |
+          ls ${{ github.workspace }}
+      # - run: ssh callum@207.154.237.124 mkdir test
       # - run: echo "🎉 The job was automatically triggered by a ${{ github.event_name }} event."
       # - run: echo "🐧 This job is now running on a ${{ runner.os }} server hosted by GitHub!"
       # - run: echo "🔎 The name of your branch is ${{ github.ref }} and your repository is ${{ github.repository }}."
