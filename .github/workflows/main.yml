@@ -12,6 +12,7 @@ jobs:
           cat << EOF > ~/.ssh/id_rsa
           ${{secrets.SSH_KEY}}
           EOF
+      - run: chmod 600 ~/.ssh/id_rsa
       - run: ssh-keyscan -H 207.154.237.124 >> ~/.ssh/known_hosts
       - run: ssh callum@207.154.237.124 mkdir test
       # - run: echo "🎉 The job was automatically triggered by a ${{ github.event_name }} event."
