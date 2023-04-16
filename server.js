@@ -7,7 +7,8 @@ app.get('/', (req, res) => {
 });
 
 app.post('/update', (req, res) => {
-  console.log("req", res.json);
+  console.log("req", req?.json);
+  console.log("req", req.body);
   return res.send("OK");
 })
 
