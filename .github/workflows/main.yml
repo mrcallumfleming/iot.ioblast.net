@@ -5,16 +5,16 @@ jobs:
   Deploy:
     runs-on: ubuntu-latest
     steps:
-      # - name: Setup SSH
-      #   run: mkdir ~/.ssh
-      #   run: touch ~/.ssh/id_rsa
-      #   run: touch ~/.ssh/known_hosts
-      #   run: |
-      #     cat << EOF > ~/.ssh/id_rsa
-      #     ${{secrets.SSH_KEY}}
-      #     EOF
-      #   run: chmod 600 ~/.ssh/id_rsa
-      #   run: ssh-keyscan -H 207.154.237.124 >> ~/.ssh/known_hosts
+      - name: Setup SSH
+        run: mkdir ~/.ssh
+        run: touch ~/.ssh/id_rsa
+        run: touch ~/.ssh/known_hosts
+        run: |
+          cat << EOF > ~/.ssh/id_rsa
+          ${{secrets.SSH_KEY}}
+          EOF
+        run: chmod 600 ~/.ssh/id_rsa
+        run: ssh-keyscan -H 207.154.237.124 >> ~/.ssh/known_hosts
 
       - name: Checkout code
         uses: actions/checkout@v3
