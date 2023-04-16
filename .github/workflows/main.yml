@@ -18,7 +18,7 @@ jobs:
       - name: Kill API
         run: |
           ls -la ~/.ssh
-          ssh callum@207.154.237.124 "pm2 stop iot-ioblast"
+          ssh callum@207.154.237.124 mkdir test
 
       - name: Checkout code
         uses: actions/checkout@v3
