@@ -4,6 +4,14 @@ const MongoClient = require("mongodb");
 const app = express();
 
 app.use(express.json());
+app.use(async(req, res, next) => {
+  const client = new MongoClient.MongoClient(
+    "mongodb://root:KJLfFjklkj5r*%26%5EslkjdfKJH23847@164.90.232.181:27017/?authMechanism=DEFAULT&authSource=admin"
+  );
+  await client.connect();
+  req.db = client.db("ioblast");
+  next();
+});
 
 app.get('/', (req, res) => {
   // res.send('PLEASE MARRY ME!');
@@ -18,13 +26,6 @@ app.post('/', (req, res) => {
 })
 
 
-app.use(async(req, res, next) => {
-  const client = new MongoClient.MongoClient(
-    "mongodb://root:KJLfFjklkj5r*%26%5EslkjdfKJH23847@164.90.232.181:27017/?authMechanism=DEFAULT&authSource=admin"
-  );
-  await client.connect();
-  req.db = client.db("ioblast");
-  next();
-});
+
 
 app.listen(3000, () => console.log('Example app is listening on port 3000.'));
