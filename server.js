@@ -22,7 +22,7 @@ app.get('/', (req, res) => {
 app.post('/', (req, res) => {
   // console.log("req", req?.json);
   console.log("req", req.body);
-  console.log(req.db);
+  // console.log(req.db);
   return res.send("OK");
 })
 
