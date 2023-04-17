@@ -10,6 +10,7 @@ app.use(async(req, res, next) => {
   );
   await client.connect();
   req.db = client.db("ioblast");
+  console.log(req.headers);
   next();
 });
 
