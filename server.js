@@ -9,7 +9,7 @@ app.get('/', (req, res) => {
   return res.redirect("https://www.youtube.com/watch?v=8QxIIz1yEsA&t=41s");
 });
 
-app.post('/update', (req, res) => {
+app.post('/ingress', (req, res) => {
   // console.log("req", req?.json);
   console.log("req", req.body);
   return res.send("OK");
