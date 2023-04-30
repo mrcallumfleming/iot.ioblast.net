@@ -63,7 +63,7 @@ app.post("/event", async (req, res) => {
     receivedStamp: new Date(),
     deviceId: req.device.id,
     eventType: req.body.type,
-    eventData,
+    ...eventData,
   });
 
   return res.sendStatus(200);
