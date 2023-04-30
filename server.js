@@ -18,7 +18,7 @@ app.use(async (req, res, next) => {
 
 // device verification and authentication
 app.use(async (req, res, next) => {
-  if(req.path === "/") {
+  if (req.path === "/") {
     return next();
   }
   const { auth, id, model } = req.headers;
@@ -60,8 +60,8 @@ app.post("/event", async (req, res) => {
 
   // if the event exists log it
   await req.db.collection("eventLogs").insertOne({
-    stamp: new Date(),
-    id: req.device.id,
+    receivedStamp: new Date(),
+    deviceId: req.device.id,
     eventType: req.body.type,
     eventData,
   });
