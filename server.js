@@ -18,6 +18,9 @@ app.use(async (req, res, next) => {
 
 // device verification and authentication
 app.use(async (req, res, next) => {
+  if(req.path === "/") {
+    return next();
+  }
   const { auth, id, model } = req.headers;
   const device = await req.db.collection("devices").findOne({
     id,
@@ -25,7 +28,7 @@ app.use(async (req, res, next) => {
     model,
   });
   if (!device) {
-    return res.sendStatus(400);
+    return res.sendStatus(403);
   }
   req.device = device;
   next();
