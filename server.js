@@ -45,12 +45,14 @@ app.post("/event", async (req, res) => {
     return res.sendStatus(400);
   }
 
+  const eventData = {};
   // make sure that all the properties that are expected are there
   for (let i = 0; i < event.properties.length; i++) {
     const eventProperty = event.properties[i];
     if (!req.body.hasOwnProperty(eventProperty)) {
       return res.sendStatus(400);
     }
+    eventData[eventProperty] = req.body[eventProperty];
   }
 
   // if the event exists log it
@@ -58,9 +60,10 @@ app.post("/event", async (req, res) => {
     stamp: new Date(),
     id: req.device.id,
     eventType: req.body.type,
+    eventData,
   });
 
-  return res.send("OK");
+  return res.sendStatus(200);
 });
 
 app.listen(3000, async () => {
