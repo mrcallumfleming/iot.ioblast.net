@@ -25,7 +25,7 @@ app.use(async (req, res, next) => {
     model,
   });
   if (!device) {
-    return res.sendStatus(403);
+    return res.sendStatus(400);
   }
   req.device = device;
   next();
